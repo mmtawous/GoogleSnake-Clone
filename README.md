@@ -12,8 +12,8 @@ A simple snake game clone written in Java. It mainly uses Java Swing and AWT and
 - Add inline comments and JavaDoc
 
 ## Gameplay
-# v1
+### v1
 ![Snake gameplay v1](https://github.com/mmtawous/GoogleSnake-Clone/raw/main/Snake/assets/gameplay_v1.gif)
 
-# v2 (Greatly improved visual fidelity)
+### v2 (Greatly improved visual fidelity)
 ![Snake gameplay v2](https://github.com/mmtawous/GoogleSnake-Clone/raw/main/Snake/assets/gameplay_v2.gif)
