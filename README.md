@@ -6,6 +6,7 @@ A simple snake game clone written in Java. It mainly uses Java Swing and AWT and
 
 ## To-Do
 - [x] Fix a bug where the user can input two keystrokes at once causing the game to end. (Fixed 04/13/22)
+- [x] Add original Google Snake sound effects (UNSTABLE)
 - [ ] Update the snake object to match the orginal google snake game look.
 - [ ] Add new gamemodes with multiple apples on screen.
 - [ ] Add a setting giving the user to customize the speed of the snake.
