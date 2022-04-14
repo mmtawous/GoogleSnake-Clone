@@ -188,7 +188,7 @@ public class Snake extends JPanel implements ActionListener {
 		}
 	}
 
-	public void checkApple() {
+	public boolean checkApple() {
 		if (appleX == rects.get(0).x && appleY == rects.get(0).y) {
 			rects.add(new Rectangle(rects.get(bodyParts - 1).x + SEGMENT_LENGTH, rects.get(bodyParts - 1).y,
 					SEGMENT_LENGTH, SEGMENT_LENGTH));
@@ -200,7 +200,10 @@ public class Snake extends JPanel implements ActionListener {
 			}
 
 			newApple();
+			return true;
 		}
+		
+		return false;
 	}
 
 	public boolean checkCollision() {
