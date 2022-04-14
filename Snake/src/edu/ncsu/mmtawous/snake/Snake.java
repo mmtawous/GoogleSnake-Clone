@@ -35,7 +35,6 @@ public class Snake extends JPanel implements ActionListener {
 	public int appleX = 90;
 	public int appleY = 90;
 	public Point[] points;
-	boolean arrived = true;
 	public ArrayList<Rectangle> rects;
 	public Color headColor = new Color(19, 41, 75);
 	public Color bodyColor = new Color(29, 99, 219);
@@ -49,6 +48,7 @@ public class Snake extends JPanel implements ActionListener {
 	public int highScore;
 	public boolean gameOver = false;
 	public boolean newGame = true;
+	public boolean completedMovement;
 	public Image background;
 	public Image apple;
 	public Image backgroundTemp;
@@ -118,8 +118,8 @@ public class Snake extends JPanel implements ActionListener {
 	}
 
 	Timer movement = new Timer(10, e -> {
-		if (!arrived && points != null) {
-		
+		if (points != null) {
+
 			for (int i = 0; i < bodyParts; i++) {
 				if (rects.get(i).x > points[i].x) {
 					rects.get(i).x -= 3;
@@ -135,17 +135,18 @@ public class Snake extends JPanel implements ActionListener {
 			}
 		}
 
-			repaint();
+		repaint();
 
-			arrived = true;
-			if (points != null) {
-				for (int i = 0; i < bodyParts; i++) {
-					if (rects.get(i).x != points[i].x || rects.get(i).y != points[i].y) {
-						arrived = false;
-						break;
-					}
+		if (points != null) {
+			for (int i = 0; i < bodyParts; i++) {
+				if (rects.get(i).x != points[i].x || rects.get(i).y != points[i].y) {
+					break;
 				}
 			}
+		}
+
+		setCompletedMovement(getHead().x % 30 == 0 && getHead().y % 30 == 0);
+
 	});
 
 	public boolean isInBound() {
@@ -223,7 +224,6 @@ public class Snake extends JPanel implements ActionListener {
 		}
 
 		points[0] = new Point(rects.get(0).x + SEGMENT_LENGTH, rects.get(0).y);
-		arrived = false;
 
 	}
 
@@ -238,7 +238,6 @@ public class Snake extends JPanel implements ActionListener {
 		}
 
 		points[0] = new Point(rects.get(0).x - SEGMENT_LENGTH, rects.get(0).y);
-		arrived = false;
 
 	}
 
@@ -253,7 +252,6 @@ public class Snake extends JPanel implements ActionListener {
 		}
 
 		points[0] = new Point(rects.get(0).x, rects.get(0).y - SEGMENT_LENGTH);
-		arrived = false;
 
 	}
 
@@ -268,7 +266,6 @@ public class Snake extends JPanel implements ActionListener {
 		}
 
 		points[0] = new Point(rects.get(0).x, rects.get(0).y + SEGMENT_LENGTH);
-		arrived = false;
 	}
 
 	public void gameOver() {
@@ -322,6 +319,18 @@ public class Snake extends JPanel implements ActionListener {
 		movement.restart();
 		GameFrame.move.restart();
 		repaint();
+	}
+
+	public Rectangle getHead() {
+		return rects.get(0);
+	}
+
+	public boolean completedMovement() {
+		return completedMovement;
+	}
+
+	public void setCompletedMovement(boolean completedMovement) {
+		this.completedMovement = completedMovement;
 	}
 
 	@Override
